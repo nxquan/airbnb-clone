@@ -1,4 +1,4 @@
-interface MenuItemProps {
+export interface MenuItemProps {
   onClick: () => void;
   label: string;
   bold?: boolean;

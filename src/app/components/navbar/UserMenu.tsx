@@ -4,45 +4,78 @@ import { BiGlobe } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import { useCallback, useState } from "react";
-import MenuItem from "./MenuItem";
+import MenuItem, { MenuItemProps } from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
+import { User } from "@prisma/client";
+import { signOut } from 'next-auth/react';
 
-const UserMenu = () => {
+interface UserMenuProps {
+  user?: Partial<User> | null;
+}
+
+const UserMenu = ({ user }: UserMenuProps) => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
+
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const handleToggleMenu = useCallback(() => {
     setIsOpenMenu((value) => !value);
   }, []);
 
-  const items = [
+  const publicItems: MenuItemProps[] = [  
     {
       label: "Sign up",
       onClick: () => {
+        setIsOpenMenu(false);
         registerModal.onOpen();
       },
       bold: true,
     },
     {
       label: "Log in",
-      onClick: () => {},
+      onClick: () => {
+        setIsOpenMenu(false);
+        loginModal.onOpen();
+      },
+    },
+  ];
+
+  const privateItems: MenuItemProps[] = [
+    {
+      label: "Favorites",
+      onClick: () => {
+        loginModal.onOpen();
+      },
+    },
+
+    {
+      label: "Reservations",
+      onClick: () => {
+        loginModal.onOpen();
+      },
+    },
+    {
+      label: "Trips",
+      onClick: () => {
+        loginModal.onOpen();
+      },
+    },
+    {
+      label: "Properties",
+      onClick: () => {
+        loginModal.onOpen();
+        
+      },
       separator: true,
     },
     {
-      label: "Gift cards",
-      onClick: () => {},
-    },
-    {
-      label: "Airbnb your home",
-      onClick: () => {},
-    },
-    {
-      label: "Hosts an experience",
-      onClick: () => {},
-    },
-    {
-      label: "Help center",
-      onClick: () => {},
+      label: "Log out",
+      onClick: () => {
+        setIsOpenMenu(false);
+        signOut();
+      },
     },
   ];
 
@@ -51,7 +84,7 @@ const UserMenu = () => {
       <div className="flex flex-row items-center justify-end">
         <div
           className="hidden lg:block text-sm font-semibold p-3 hover:bg-neutral-100 rounded-full cursor-pointer transition"
-          onClick={() => {}}
+          onClick={() => { }}
         >
           Airbnb your home
         </div>
@@ -71,7 +104,9 @@ const UserMenu = () => {
 
       {isOpenMenu && (
         <div className="absolute py-2 shadow-md rounded-xl right-0 top-12 text-sm bg-white w-3/4 md:w-[240px]">
-          {items.map((props, index) => (
+          {user ? privateItems.map((props, index) => (
+            <MenuItem {...props} key={`menu_item_${index}`} />
+          )) : publicItems.map((props, index) => (
             <MenuItem {...props} key={`menu_item_${index}`} />
           ))}
         </div>

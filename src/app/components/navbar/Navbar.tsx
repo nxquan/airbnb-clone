@@ -1,9 +1,15 @@
+import { User } from "@prisma/client";
 import Container from "../Container";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 
-const Navbar = () => {
+interface NavbarProps {
+  user?: Partial<User> | null;
+}
+
+const Navbar = ({ user }: NavbarProps) => {
+
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm h-[80px]">
       <div className="py-4 h-full">
@@ -13,7 +19,7 @@ const Navbar = () => {
               <Logo />
             </div>
             <Search />
-            <UserMenu />
+            <UserMenu user={user} />
           </div>
         </Container>
       </div>
