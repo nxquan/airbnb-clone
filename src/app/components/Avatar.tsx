@@ -1,11 +1,15 @@
 import Image from "next/image";
 
-const Avatar = () => {
+interface AvatarProps {
+  src: string | undefined | null;
+}
+
+const Avatar = ({ src }: AvatarProps) => {
   return (
     <Image
       className="rounded-full "
       alt="User avatar"
-      src="/images/avatar.png"
+      src={src ?? "/images/avatar.png"}
       width="30"
       height="30"
     />

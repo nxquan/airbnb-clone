@@ -14,6 +14,7 @@ import Input from "../inputs/Input";
 import toast from "react-hot-toast";
 import Button from "../Button";
 import { FaFacebookSquare } from "react-icons/fa";
+import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -88,13 +89,17 @@ const RegisterModal = () => {
           label="Continue with Google"
           outline
           icon={FcGoogle}
-          onClick={() => { }}
+          onClick={() => {
+            signIn('google');
+          }}
         />
         <Button
           label="Continue with Github"
           outline
           icon={AiFillGithub}
-          onClick={() => { }}
+          onClick={() => {
+            signIn('github');
+          }}
         />
       </div>
       <div className="text-neutral-500 font-light flex items-center justify-center mt-4">

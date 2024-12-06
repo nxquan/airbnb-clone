@@ -83,13 +83,13 @@ const LoginModal = () => {
           label="Continue with Google"
           outline
           icon={FcGoogle}
-          onClick={() => { }}
+          onClick={() => signIn('google')}
         />
         <Button
           label="Continue with Github"
           outline
           icon={AiFillGithub}
-          onClick={() => { }}
+          onClick={() => signIn('github')}
         />
       </div>
       <div className="text-neutral-500 font-light flex items-center justify-center mt-4">
@@ -109,9 +109,7 @@ const LoginModal = () => {
   return (
     <Modal
       isOpen={loginModal.isOpen}
-      onClose={function (): void {
-        throw new Error("Function not implemented.");
-      }}
+      onClose={loginModal.onClose}
       body={bodyContent}
       footer={footerContent}
       onSubmit={handleSubmit(onSubmit)}

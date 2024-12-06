@@ -17,9 +17,8 @@ interface UserMenuProps {
 const UserMenu = ({ user }: UserMenuProps) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
-
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-
+  
   const handleToggleMenu = useCallback(() => {
     setIsOpenMenu((value) => !value);
   }, []);
@@ -97,7 +96,7 @@ const UserMenu = ({ user }: UserMenuProps) => {
         >
           <AiOutlineMenu size={18} />
           <div className="hidden sm:block">
-            <Avatar />
+            <Avatar src={user?.image} />
           </div>
         </div>
       </div>

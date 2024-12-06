@@ -20,6 +20,11 @@ export default async function getCurrentUser() {
         name: true,
         email: true,
         emailVerified: true,
+        image: true,
+        reservations: true,
+        favoriteIds: true,
+        accounts: true,
+        listings: true,
       },
       where: {
         email: session.user.email as string,
