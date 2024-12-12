@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
 body,
 :root {
@@ -22,15 +21,15 @@ body,
 }
 *::-webkit-scrollbar-track {
   border-radius: 5px;
-  background-color: #DFE9EB;
+  background-color: #dfe9eb;
 }
 
 *::-webkit-scrollbar-track:hover {
-  background-color: #B8C0C2;
+  background-color: #b8c0c2;
 }
 
 *::-webkit-scrollbar-track:active {
-  background-color: #B8C0C2;
+  background-color: #b8c0c2;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -44,4 +43,11 @@ body,
 
 *::-webkit-scrollbar-thumb:active {
   background-color: #5f676b;
+}
+
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
 }

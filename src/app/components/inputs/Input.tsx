@@ -1,12 +1,13 @@
 "use client";
 
+import { HTMLInputTypeAttribute } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 
 interface InputProps {
   id: string;
   label: string;
-  type?: string;
+  type?: HTMLInputTypeAttribute;
   disabled?: boolean;
   formatPrice?: boolean;
   required?: boolean;

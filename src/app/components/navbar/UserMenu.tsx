@@ -8,7 +8,8 @@ import MenuItem, { MenuItemProps } from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { User } from "@prisma/client";
-import { signOut } from 'next-auth/react';
+import { signOut } from "next-auth/react";
+import useRentModal from "@/app/hooks/useRentModal";
 
 interface UserMenuProps {
   user?: Partial<User> | null;
@@ -17,13 +18,14 @@ interface UserMenuProps {
 const UserMenu = ({ user }: UserMenuProps) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  
+
   const handleToggleMenu = useCallback(() => {
     setIsOpenMenu((value) => !value);
   }, []);
 
-  const publicItems: MenuItemProps[] = [  
+  const publicItems: MenuItemProps[] = [
     {
       label: "Sign up",
       onClick: () => {
@@ -65,7 +67,12 @@ const UserMenu = ({ user }: UserMenuProps) => {
       label: "Properties",
       onClick: () => {
         loginModal.onOpen();
-        
+      },
+    },
+    {
+      label: "Airbnb your home",
+      onClick: () => {
+        rentModal.onOpen();
       },
       separator: true,
     },
@@ -78,12 +85,18 @@ const UserMenu = ({ user }: UserMenuProps) => {
     },
   ];
 
+  const onRent = useCallback(() => {
+    if (!user) return loginModal.onOpen();
+
+    rentModal.onOpen();
+  }, []);
+
   return (
     <div className="relative flex-1">
       <div className="flex flex-row items-center justify-end">
         <div
           className="hidden lg:block text-sm font-semibold p-3 hover:bg-neutral-100 rounded-full cursor-pointer transition"
-          onClick={() => { }}
+          onClick={onRent}
         >
           Airbnb your home
         </div>
@@ -103,11 +116,13 @@ const UserMenu = ({ user }: UserMenuProps) => {
 
       {isOpenMenu && (
         <div className="absolute py-2 shadow-md rounded-xl right-0 top-12 text-sm bg-white w-3/4 md:w-[240px]">
-          {user ? privateItems.map((props, index) => (
-            <MenuItem {...props} key={`menu_item_${index}`} />
-          )) : publicItems.map((props, index) => (
-            <MenuItem {...props} key={`menu_item_${index}`} />
-          ))}
+          {user
+            ? privateItems.map((props, index) => (
+                <MenuItem {...props} key={`menu_item_${index}`} />
+              ))
+            : publicItems.map((props, index) => (
+                <MenuItem {...props} key={`menu_item_${index}`} />
+              ))}
         </div>
       )}
     </div>

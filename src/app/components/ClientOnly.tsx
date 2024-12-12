@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 interface ClientOnlyProps {
   children: React.ReactNode;
 }
+
 const ClientOnly = ({ children }: ClientOnlyProps) => {
   const [hasMounted, setHasMounted] = useState(false);
 

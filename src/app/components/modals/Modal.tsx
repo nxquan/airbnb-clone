@@ -52,7 +52,7 @@ const Modal = ({
     }
 
     onSubmit();
-  }, []);
+  }, [onSubmit]);
 
   const handleSecondaryAction = useCallback(() => {
     if (disabled || !secondaryAction) {
@@ -68,7 +68,7 @@ const Modal = ({
 
   return (
     <div className="flex items-center justify-center bg-neutral-700/60 z-50 fixed inset-0 focus:outline-none">
-      <div className="relative mx-auto my-6 w-full md:w-4/6 lg:w-3/6 xl:w-2/5 h-full md:h-3/4 lg:h-4/5">
+      <div className="relative mx-auto my-6 w-full md:w-4/6 lg:w-3/6 xl:w-2/5 max-full md:h-3/4 lg:h-4/5">
         <div
           className={`translate duration-300 h-full ${
             showModal ? "translate-y-0" : "translate-y-full"
@@ -76,9 +76,9 @@ const Modal = ({
           ${showModal ? "opacity-100" : "opacity-0"}
           `}
         >
-          <div className="translate h-full md:h-full lg:h-full w-full bg-white rounded-lg shadow-lg flex flex-col">
+          <div className="translate max-h-full md:max-h-full lg:max-h-full w-full bg-white rounded-lg shadow-lg flex flex-col">
             {/* Header */}
-            <div className="flex items-center justify-center px-6 h-16 rounded-t relative border-b">
+            <div className="flex items-center justify-center px-6 h-16 rounded-t relative border-b shrink-0">
               <button
                 className="hover:bg-neutral-100 cursor-pointer p-2 rounded-full absolute left-5"
                 onClick={handleClose}
