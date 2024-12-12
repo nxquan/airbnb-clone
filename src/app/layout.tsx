@@ -33,7 +33,7 @@ export default async function RootLayout({
           <RentModal />
           <ToastProvider />
         </ClientOnly>
-        {children}
+        <div className="pt-28">{children}</div>
       </body>
     </html>
   );

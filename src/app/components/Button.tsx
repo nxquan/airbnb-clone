@@ -26,11 +26,12 @@ const Button = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 w-full px-[23px] py-3 text-base font-bold
+      className={`relative disabled:opacity-60 disabled:cursor-not-allowed rounded-lg hover:opacity-70 w-full px-[23px] py-3 text-base font-bold
         border border-[bg-rose-500]
         ${primary ? "bg-rose-500 text-white" : ""}
         ${outline ? "bg-white text-black border border-black" : ""}
         ${small ? "py-1 text-sm font-light" : ""}
+        ${primary && outline ? "border-rose-500 !text-rose-500 " : ""}
         `}
     >
       {Icon && (
