@@ -23,13 +23,13 @@ export default async function getReservations({
     }
 
     if (authorId) {
-      query.Listing = { userId: authorId };
+      query.listing = { userId: authorId };
     }
 
     return prisma.reservation.findMany({
       where: query,
       include: {
-        Listing: true,
+        listing: true,
       },
       orderBy: {
         createdAt: "desc",

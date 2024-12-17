@@ -26,7 +26,7 @@ const initialDateRange = {
   color: "#262626",
 };
 
-const searchModal = () => {
+const SearchModal = () => {
   const router = useRouter();
   const searchModal = useSearchModal();
   const params = useSearchParams();
@@ -194,4 +194,4 @@ const searchModal = () => {
   );
 };
 
-export default searchModal;
+export default SearchModal;
