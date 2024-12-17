@@ -16,7 +16,7 @@ interface CountrySelectProps {
 }
 
 const CountrySelect = ({ onChange, value }: CountrySelectProps) => {
-  const { getAll, getByValue } = useCountries();
+  const { getAll } = useCountries();
 
   return (
     <div className="mt-2">

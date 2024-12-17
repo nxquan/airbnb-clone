@@ -25,7 +25,7 @@ const Map = ({ center }: MapProps) => {
       <MapContainer
         center={(center as LatLngExpression) || [51.505, -0.09]}
         zoom={center ? 4 : 2}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
         className="h-[50vh] rounded-lg"
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
