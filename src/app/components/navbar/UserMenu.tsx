@@ -96,7 +96,7 @@ const UserMenu = ({ user }: UserMenuProps) => {
     if (!user) return loginModal.onOpen();
 
     rentModal.onOpen();
-  }, []);
+  }, [loginModal, rentModal, user]);
 
   return (
     <div className="relative flex-1">

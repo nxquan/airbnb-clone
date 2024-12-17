@@ -40,6 +40,7 @@ const SearchModal = () => {
 
   const Map = useMemo(
     () => dynamic(() => import("../Map"), { ssr: false }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [location]
   );
 
@@ -53,7 +54,7 @@ const SearchModal = () => {
 
   const onNext = useCallback(() => {
     setStep((value) => value + 1);
-  }, [step]);
+  }, []);
 
   const onSubmit = useCallback(async () => {
     if (step !== STEPS.INFO) {

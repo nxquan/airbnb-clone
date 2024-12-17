@@ -44,7 +44,7 @@ const Modal = ({
     setTimeout(() => {
       onClose();
     }, 300);
-  }, [disabled, isOpen]);
+  }, [disabled, onClose]);
 
   const handleSubmit = useCallback(() => {
     if (disabled) {
@@ -52,7 +52,7 @@ const Modal = ({
     }
 
     onSubmit();
-  }, [onSubmit]);
+  }, [disabled, onSubmit]);
 
   const handleSecondaryAction = useCallback(() => {
     if (disabled || !secondaryAction) {

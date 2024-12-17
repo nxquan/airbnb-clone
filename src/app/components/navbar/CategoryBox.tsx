@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { IconType } from "react-icons";
@@ -10,11 +12,7 @@ export interface CategoryBoxProps {
   selected?: boolean;
 }
 
-const CategoryBox = ({
-  label,
-  icon: Icon,
-  selected,
-}: CategoryBoxProps) => {
+const CategoryBox = ({ label, icon: Icon, selected }: CategoryBoxProps) => {
   const router = useRouter();
   const params = useSearchParams();
 
