@@ -6,6 +6,7 @@ import PropertiesClient from "../components/properties/PropertiesClient";
 
 const PropertiesPage = async () => {
   const currentUser = await getCurrentUser();
+
   if (!currentUser) {
     return (
       <ClientOnly>

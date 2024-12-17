@@ -6,7 +6,6 @@ import FavoritesClient from "../components/favorites/FavoritesClient";
 
 const FavoritesPage = async () => {
   const currentUser = await getCurrentUser();
-  const favorites = await getFavorites();
 
   if (!currentUser) {
     return (
@@ -19,6 +18,8 @@ const FavoritesPage = async () => {
       </ClientOnly>
     );
   }
+
+  const favorites = await getFavorites();
 
   if (favorites?.length === 0) {
     return (
