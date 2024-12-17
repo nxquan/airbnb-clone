@@ -40,6 +40,8 @@ const RegisterModal = () => {
     axios
       .post("/api/register", data)
       .then(() => {
+        toast.success("Register successfully!");
+        loginModal.onOpen();
         registerModal.onClose();
       })
       .catch((error) => {
@@ -85,14 +87,14 @@ const RegisterModal = () => {
           outline
           icon={FaFacebookSquare}
           iconColor="#1877F2"
-          onClick={() => { }}
+          onClick={() => {}}
         />
         <Button
           label="Continue with Google"
           outline
           icon={FcGoogle}
           onClick={() => {
-            signIn('google');
+            signIn("google");
           }}
         />
         <Button
@@ -100,7 +102,7 @@ const RegisterModal = () => {
           outline
           icon={AiFillGithub}
           onClick={() => {
-            signIn('github');
+            signIn("github");
           }}
         />
       </div>

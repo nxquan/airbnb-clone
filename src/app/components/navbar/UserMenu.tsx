@@ -10,6 +10,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import useRentModal from "@/app/hooks/useRentModal";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   user?: Partial<User> | null;
@@ -20,6 +21,7 @@ const UserMenu = ({ user }: UserMenuProps) => {
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const router = useRouter();
 
   const handleToggleMenu = useCallback(() => {
     setIsOpenMenu((value) => !value);
@@ -47,32 +49,37 @@ const UserMenu = ({ user }: UserMenuProps) => {
     {
       label: "Favorites",
       onClick: () => {
-        loginModal.onOpen();
+        router.push("/favorites");
+        handleToggleMenu();
       },
     },
 
     {
-      label: "Reservations",
+      label: "My reservations",
       onClick: () => {
-        loginModal.onOpen();
+        router.push("/reservations");
+        handleToggleMenu();
       },
     },
     {
       label: "Trips",
       onClick: () => {
-        loginModal.onOpen();
+        router.push("/trips");
+        handleToggleMenu();
       },
     },
     {
       label: "Properties",
       onClick: () => {
-        loginModal.onOpen();
+        router.push("/properties");
+        handleToggleMenu();
       },
     },
     {
       label: "Airbnb your home",
       onClick: () => {
         rentModal.onOpen();
+        handleToggleMenu();
       },
       separator: true,
     },

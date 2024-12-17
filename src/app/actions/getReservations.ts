@@ -23,10 +23,10 @@ export default async function getReservations({
     }
 
     if (authorId) {
-      query.listing = { userId: authorId };
+      query.Listing = { userId: authorId };
     }
 
-    const reservations = await prisma.reservation.findMany({
+    return prisma.reservation.findMany({
       where: query,
       include: {
         Listing: true,
@@ -35,7 +35,5 @@ export default async function getReservations({
         createdAt: "desc",
       },
     });
-
-    return reservations;
   } catch (error: any) {}
 }

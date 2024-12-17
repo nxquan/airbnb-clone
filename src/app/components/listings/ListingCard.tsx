@@ -20,7 +20,7 @@ interface ListingCartProps {
   disabled?: boolean;
 }
 
-const ListingCart = ({
+const ListingCard = ({
   data,
   actionId = "",
   actionLabel,
@@ -33,14 +33,15 @@ const ListingCart = ({
   const { getByValue } = useCountries();
   const location = getByValue(data.locationValue);
 
-  const handleCancel = useCallback(
+  const handleClickButtons = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
+
       if (disabled) {
         return;
       }
 
-      onAction?.(data.id);
+      onAction?.(actionId);
     },
     [onAction, actionId]
   );
@@ -93,11 +94,17 @@ const ListingCart = ({
           {!reservation && <div className="font-light">night</div>}
         </div>
         {onAction && actionLabel && (
-          <Button disabled label={actionLabel} small onClick={handleCancel} />
+          <Button
+            disabled={disabled}
+            label={actionLabel}
+            small
+            primary
+            onClick={handleClickButtons}
+          />
         )}
       </div>
     </div>
   );
 };
 
-export default ListingCart;
+export default ListingCard;
